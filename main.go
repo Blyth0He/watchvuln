@@ -50,7 +50,7 @@ func main() {
 			Name:    "sources",
 			Aliases: []string{"s"},
 			Usage:   "set vuln sources",
-			Value:   "avd,ti,oscs",
+			Value:   "avd,ti,oscs,360",
 		},
 		&cli.StringFlag{
 			Name:    "interval",
@@ -302,6 +302,8 @@ func initSources(c *cli.Context) ([]grab.Grabber, error) {
 			grabs = append(grabs, grab.NewTiCrawler())
 		case "oscs":
 			grabs = append(grabs, grab.NewOSCSCrawler())
+		case "360":
+			grabs = append(grabs, grab.NewA360Crawler())
 		default:
 			return nil, fmt.Errorf("invalid grab source %s", part)
 		}
